@@ -31,3 +31,11 @@
 .showIcon:hover .icon {
   display: flex;
 }
+
+.functionContainer:hover {
+  background-color: #232323;
+}
+
+.functionContainer:hover .showFunction {
+  display: flex !important;
+}
