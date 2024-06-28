@@ -33,7 +33,7 @@ export default function Home() {
 				<div className="mt-12">
 					<div className="flex items-center justify-between mb-4">
 						<span className="text-2xl text-white capitalize font-bold cursor-pointer hover:underline">Made for cong hai</span>
-						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer">Show all</span>
+						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer hover:underline">Show all</span>
 					</div>
 					<div className="grid grid-cols-6 gap-6">
 						{[1, 2, 3, 4, 5, 6].map((item, index) => {
@@ -50,7 +50,7 @@ export default function Home() {
 				<div className="mt-12">
 					<div className="flex items-center justify-between mb-4">
 						<span className="text-2xl text-white capitalize font-bold cursor-pointer hover:underline">Best of artists</span>
-						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer">Show all</span>
+						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer hover:underline">Show all</span>
 					</div>
 					<div className="grid grid-cols-6 gap-6">
 						{[1, 2, 3, 4, 5, 6].map((item, index) => {
@@ -67,7 +67,7 @@ export default function Home() {
 				<div className="mt-12">
 					<div className="flex items-center justify-between mb-4">
 						<span className="text-2xl text-white capitalize font-bold cursor-pointer hover:underline">Recently played</span>
-						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer">Show all</span>
+						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer hover:underline">Show all</span>
 					</div>
 					<div className="grid grid-cols-6 gap-6">
 						{[1, 2, 3, 4, 5, 6].map((item, index) => {
@@ -84,7 +84,7 @@ export default function Home() {
 				<div className="mt-12">
 					<div className="flex items-center justify-between mb-4">
 						<span className="text-2xl text-white capitalize font-bold cursor-pointer hover:underline">Recommended Stations</span>
-						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer">Show all</span>
+						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer hover:underline">Show all</span>
 					</div>
 					<div className="grid grid-cols-6 gap-6">
 						{[1, 2, 3, 4, 5, 6].map((item, index) => {
@@ -101,7 +101,7 @@ export default function Home() {
 				<div className="mt-12">
 					<div className="flex items-center justify-between mb-4">
 						<span className="text-2xl text-white capitalize font-bold cursor-pointer hover:underline">Your favorite artists</span>
-						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer">Show all</span>
+						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer hover:underline">Show all</span>
 					</div>
 					<div className="grid grid-cols-6 gap-6">
 						{[1, 2, 3, 4, 5, 6].map((item, index) => {
@@ -118,7 +118,7 @@ export default function Home() {
 				<div className="mt-12">
 					<div className="flex items-center justify-between mb-4">
 						<span className="text-2xl text-white capitalize font-bold cursor-pointer hover:underline">Recommended for today</span>
-						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer">Show all</span>
+						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer hover:underline">Show all</span>
 					</div>
 					<div className="grid grid-cols-6 gap-6">
 						{[1, 2, 3, 4, 5, 6].map((item, index) => {
@@ -135,7 +135,7 @@ export default function Home() {
 				<div className="mt-12">
 					<div className="flex items-center justify-between mb-4">
 						<span className="text-2xl text-white capitalize font-bold cursor-pointer hover:underline">Episodes for you</span>
-						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer">Show all</span>
+						<span className="text-sm text-gray-500 capitalize font-bold cursor-pointer hover:underline">Show all</span>
 					</div>
 					<div className="grid grid-cols-6 gap-6">
 						{[1, 2, 3, 4, 5, 6].map((item, index) => {
