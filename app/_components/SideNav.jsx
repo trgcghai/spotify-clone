@@ -97,7 +97,7 @@ export default function SideNav() {
                                             </div>
                                             <div>
                                                 <div className={`${index == 0 ? 'text-green-500' : 'text-white'} text-lg`}>Liked Songs</div>
-                                                <div className="text-gray-500">Playlist - 62 songs</div>
+                                                <div className="text-gray-500 text-md">Playlist - 62 songs</div>
                                             </div>
                                         </div>
                                         {index == 0 ? <div>

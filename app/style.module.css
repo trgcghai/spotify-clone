@@ -39,3 +39,7 @@
 .functionContainer:hover .showFunction {
   display: flex !important;
 }
+
+.blurBgGradient {
+  background: linear-gradient(to bottom, #182c1f, #171d19);
+}

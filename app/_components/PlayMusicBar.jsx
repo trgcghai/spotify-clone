@@ -6,17 +6,17 @@ import { faBackwardStep, faComputer, faForwardStep, faListOl, faMicrophone, faPa
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay, faClone } from '@fortawesome/free-regular-svg-icons';
 import { ConfigProvider, Progress, Slider, Space } from 'antd';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import style from '../style.module.css'
+import { VisibleContext } from '../_context/Context';
 
 export default function PlayMusicBar() {
+    const { visible, setVisible } = useContext(VisibleContext)
     const [iconActive, setIconActive] = useState({
-        play: false,
+        play: visible.nowPlaying,
         lyrics: false,
-        queue: false,
-        devices: false,
-        pip: false,
-        fullscreen: false,
+        queue: visible.queue,
+        devices: visible.devices,
         shuffle: false,
         replay: false
     })
@@ -24,9 +24,6 @@ export default function PlayMusicBar() {
     const [mute, setMute] = useState(false)
     const [playing, setPlaying] = useState(true)
 
-    const handleMute = () => {
-        setMute(!mute)
-    }
     return (
         <>
             <div className="h-20  flex justify-between items-center">
@@ -98,7 +95,10 @@ export default function PlayMusicBar() {
                 <div className='flex items-center gap-4 px-2'>
                     <div className={`${iconActive.play ? style.dotBelow : ''}`}>
                         <FontAwesomeIcon
-                            onClick={() => setIconActive({ ...iconActive, play: !iconActive.play })}
+                            onClick={() => {
+                                setIconActive({ ...iconActive, play: !iconActive.play, queue: false, devices: false })
+                                setVisible({ ...visible, nowPlaying: !visible.nowPlaying, queue: false, devices: false })
+                            }}
                             style={{ color: iconActive.play ? 'rgb(34,197,94)' : 'rgb(107,114,128)' }}
                             height={18}
                             icon={faCirclePlay}
@@ -116,7 +116,10 @@ export default function PlayMusicBar() {
                     </div>
                     <div className={`${iconActive.queue ? style.dotBelow : ''}`}>
                         <FontAwesomeIcon
-                            onClick={() => setIconActive({ ...iconActive, queue: !iconActive.queue })}
+                            onClick={() => {
+                                setIconActive({ ...iconActive, queue: !iconActive.queue, play: false, devices: false })
+                                setVisible({ ...visible, queue: !visible.queue, nowPlaying: false, devices: false })
+                            }}
                             style={{ color: iconActive.queue ? 'rgb(34,197,94)' : 'rgb(107,114,128)' }}
                             height={18}
                             icon={faListOl}
@@ -125,7 +128,10 @@ export default function PlayMusicBar() {
                     </div>
                     <div className={`${iconActive.devices ? style.dotBelow : ''}`}>
                         <FontAwesomeIcon
-                            onClick={() => setIconActive({ ...iconActive, devices: !iconActive.devices })}
+                            onClick={() => {
+                                setIconActive({ ...iconActive, devices: !iconActive.devices, play: false, queue: false })
+                                setVisible({ ...visible, devices: !visible.devices, nowPlaying: false, queue: false })
+                            }}
                             style={{ color: iconActive.devices ? 'rgb(34,197,94)' : 'rgb(107,114,128)' }}
                             height={18}
                             icon={faComputer}
@@ -133,7 +139,7 @@ export default function PlayMusicBar() {
                         />
                     </div>
                     <div className='flex items-center gap-2'>
-                        <div onClick={handleMute}>
+                        <div onClick={() => setMute(!mute)}>
                             {
                                 mute ? <FontAwesomeIcon style={{ color: 'rgb(107,114,128)' }} height={18} icon={faVolumeMute} className='cursor-pointer' /> :
                                     volume < 50 ?
@@ -165,18 +171,16 @@ export default function PlayMusicBar() {
                             <Slider defaultValue={volume} onChange={(e) => setVolume(e)} style={{ width: '100px' }}></Slider>
                         </ConfigProvider>
                     </div>
-                    <div className={`${iconActive.pip ? style.dotBelow : ''}`}>
+                    <div>
                         <FontAwesomeIcon
-                            onClick={() => setIconActive({ ...iconActive, pip: !iconActive.pip })}
                             style={{ color: iconActive.pip ? 'rgb(34,197,94)' : 'rgb(107,114,128)' }}
                             height={18}
                             icon={faClone}
                             className='cursor-pointer'
                         />
                     </div>
-                    <div className={`${iconActive.fullscreen ? style.dotBelow : ''}`}>
+                    <div>
                         <FontAwesomeIcon
-                            onClick={() => setIconActive({ ...iconActive, fullscreen: !iconActive.fullscreen })}
                             style={{ color: iconActive.fullscreen ? 'rgb(34,197,94)' : 'rgb(107,114,128)' }}
                             height={16}
                             icon={faUpRightAndDownLeftFromCenter}
