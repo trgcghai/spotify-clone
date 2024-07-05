@@ -6,9 +6,10 @@ import { faBackwardStep, faComputer, faForwardStep, faListOl, faMicrophone, faPa
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay, faClone } from '@fortawesome/free-regular-svg-icons';
 import { ConfigProvider, Progress, Slider, Space } from 'antd';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import style from '../style.module.css'
 import { VisibleContext } from '../_context/Context';
+import { useRouter } from 'next/navigation';
 
 export default function PlayMusicBar() {
     const { visible, setVisible } = useContext(VisibleContext)
@@ -23,6 +24,12 @@ export default function PlayMusicBar() {
     const [volume, setVolume] = useState(100)
     const [mute, setMute] = useState(false)
     const [playing, setPlaying] = useState(true)
+    const router = useRouter()
+
+    useEffect(() => {
+        setIconActive({ ...iconActive, play: visible.nowPlaying, queue: visible.queue, devices: visible.devices })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [visible])
 
     return (
         <>
@@ -107,7 +114,9 @@ export default function PlayMusicBar() {
                     </div>
                     <div className={`${iconActive.lyrics ? style.dotBelow : ''}`}>
                         <FontAwesomeIcon
-                            onClick={() => setIconActive({ ...iconActive, lyrics: !iconActive.lyrics })}
+                            onClick={() => {
+                                setIconActive({ ...iconActive, lyrics: !iconActive.lyrics })
+                            }}
                             style={{ color: iconActive.lyrics ? 'rgb(34,197,94)' : 'rgb(107,114,128)' }}
                             height={18}
                             icon={faMicrophone}

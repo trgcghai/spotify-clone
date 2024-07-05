@@ -4,6 +4,7 @@ import style from "./style.module.css";
 import SideNav from "./_components/SideNav";
 import PlayMusicBar from "./_components/PlayMusicBar";
 import VisibleContextProvider from "./_context/VisibleContextProvider";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 const inter = Inter({ subsets: ["latin"] });
 
