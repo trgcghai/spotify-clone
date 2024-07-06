@@ -3,10 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BellOutlined, DownloadOutlined, LeftOutlined, RightOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, ConfigProvider, Input } from "antd";
+import { Button, ConfigProvider, Dropdown, Input, Menu } from "antd";
 
 export default function Header() {
     const path = usePathname()
+
+    const items = [
+        {
+            key: '1',
+            label: (
+                <span className="text-white font-light text-sm bg-lightDarkCoal">
+                    {"What's new"}
+                </span>
+            ),
+        },
+    ];
+
     return (
         <>
             <div className="flex items-center justify-between">
@@ -78,28 +90,44 @@ export default function Header() {
                         ></DownloadOutlined>
                         Install App
                     </Button>
-                    <Button
-                        shape="circle"
-                        ghost={true}
-                        className="border-0 font-bold rounded-full text-md"
-                        style={{ backgroundColor: '#000', color: '#fff' }}
-                    >
-                        <BellOutlined
-                            className="p-2 rounded-full"
-                            style={{ fontSize: '18px' }}
-                        ></BellOutlined>
-                    </Button>
-                    <Button
-                        shape="circle"
-                        ghost={true}
-                        className="border-0 font-bold rounded-full text-md"
-                        style={{ backgroundColor: '#000', color: '#fff' }}
-                    >
-                        <UserOutlined
-                            className="p-2 rounded-full"
-                            style={{ fontSize: '18px' }}
-                        ></UserOutlined>
-                    </Button>
+                    <ConfigProvider theme={{
+                        token: {
+                            colorBgBase: '#1A1A1A'
+                        },
+                        components: {
+                            Dropdown: {
+                                paddingBlock: 0,
+                            }
+                        }
+                    }}>
+                        <Dropdown placement="bottom" menu={{ items }}>
+                            <Button
+                                shape="circle"
+                                ghost={true}
+                                className="border-0 font-bold rounded-full text-md"
+                                style={{ backgroundColor: '#000', color: '#fff' }}
+                            >
+                                <BellOutlined
+                                    className="p-2 rounded-full"
+                                    style={{ fontSize: '18px' }}
+                                ></BellOutlined>
+                            </Button>
+                        </Dropdown>
+                        <Dropdown placement="bottom" menu={{ items }}>
+                            <Button
+                                shape="circle"
+                                ghost={true}
+                                className="border-0 font-bold rounded-full text-md"
+                                style={{ backgroundColor: '#000', color: '#fff' }}
+                            >
+                                <UserOutlined
+                                    className="p-2 rounded-full"
+                                    style={{ fontSize: '18px' }}
+                                ></UserOutlined>
+                            </Button>
+                        </Dropdown>
+                    </ConfigProvider>
+
                 </div>
             </div>
             {path == '/' ?

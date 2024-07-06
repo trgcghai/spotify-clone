@@ -43,3 +43,33 @@
 .blurBgGradient {
   background: linear-gradient(to bottom, #182c1f, #171d19);
 }
+
+.slideRight {
+  animation: slideToRight 0.3s ease-out;
+}
+
+.slideLeft {
+  animation: slideToLeft forwards 0.3s ease-in;
+}
+
+@keyframes slideToRight {
+  from {
+    transform: translateX(-15%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-15%);
+    opacity: 0;
+  }
+}

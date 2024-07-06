@@ -2,13 +2,13 @@
 import Link from "next/link"
 import { ArrowRightOutlined, HomeFilled, MenuOutlined, PlusOutlined, SearchOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import { usePathname } from "next/navigation"
-import { Avatar, Button, List } from "antd"
+import { Avatar, Button, ConfigProvider, Input, List } from "antd"
 import Image from "next/image"
 import tempImg from '../../public/reveal.jpg'
 import style from '../style.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faVolumeHigh } from "@fortawesome/free-solid-svg-icons"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 
 export default function SideNav() {
@@ -17,6 +17,11 @@ export default function SideNav() {
     const isActive = (link) => {
         return pathname == link
     }
+    const [showSearch, setShowSearch] = useState(false)
+    const [animation, setAnimation] = useState('')
+    useEffect(() => {
+        setAnimation(showSearch ? style.slideRight : style.slideLeft)
+    }, [showSearch])
     return (
         <div className={`col-start-1 col-end-7 max-h-screen`}>
             <div className="p-6 mb-2 bg-darkCoal rounded-md">
@@ -76,9 +81,36 @@ export default function SideNav() {
                         </Button>
                     </div>
                     <div className="mt-4 flex items-center justify-between">
-                        <Button shape="circle" ghost={true} className="bg-darkCoal border-0" style={{ color: 'rgb(107,114,128)', fontSize: '18px' }}>
-                            <SearchOutlined className="hover:text-white hover:bg-lightDarkCoal p-2 rounded-full" style={{ marginLeft: '-0.5rem' }}></SearchOutlined>
-                        </Button>
+                        <div shape="circle" className="bg-darkCoal border-0 relative" style={{ color: 'rgb(107,114,128)', fontSize: '18px' }}>
+                            {!showSearch &&
+                                <SearchOutlined className="hover:text-white hover:bg-lightDarkCoal rounded-full" onClick={() => setShowSearch(!showSearch)}></SearchOutlined>
+                            }
+                            <ConfigProvider theme={{
+                                token: {
+                                    colorBorder: 'transparent'
+                                },
+                                components: {
+                                    Input: {
+                                        colorTextPlaceholder: '#6B7575',
+                                        colorText: 'white',
+                                        hoverBorderColor: 'transparent',
+                                        activeBorderColor: 'transparent',
+                                        activeShadow: 'transparent'
+                                    }
+                                }
+                            }}>
+                                {showSearch &&
+                                    <Input
+                                        placeholder="Search in your library"
+                                        style={{ backgroundColor: '#242424', outline: 'none', marginLeft: '-0.5rem' }}
+                                        className={`rounded-md ${animation}`}
+                                        prefix={<SearchOutlined className="hover:text-white hover:bg-lightDarkCoal rounded-full"></SearchOutlined>}
+                                        autoFocus={true}
+                                        onBlur={() => setShowSearch(!showSearch)}
+                                    />
+                                }
+                            </ConfigProvider>
+                        </div>
                         <Button shape="circle" ghost={true} className="bg-darkCoal border-0" style={{ color: 'rgb(107,114,128)', fontSize: '18px' }}>
                             <span style={{ fontSize: '14px' }}>Recents</span>
                             <UnorderedListOutlined style={{ fontSize: '18px' }} className="hover:text-white hover:bg-lightDarkCoal"></UnorderedListOutlined>
