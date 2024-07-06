@@ -3,58 +3,51 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BellOutlined, DownloadOutlined, LeftOutlined, RightOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, ConfigProvider, Dropdown, Input, Menu } from "antd";
+import { Button, ConfigProvider, Input, Popover } from "antd";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
     const path = usePathname()
-
-    const notificationItems = [
-        {
-            key: '1',
-            label: (
-                <span className="text-white font-light text-sm bg-lightDarkCoal">
-                    {"What's new"}
-                </span>
-            ),
-        },
-    ];
-    const userItems = [
-        {
-            key: '1',
-            label: (
-                <span className="text-white font-light text-sm bg-lightDarkCoal">
-                    {"Username"}
-                </span>
-            ),
-        },
-    ];
+    const router = useRouter()
 
     return (
         <>
             <div className="flex items-center justify-between">
                 <div className="flex gap-3 items-center">
-                    <Button
-                        shape="circle"
-                        ghost={true}
-                        className="bg-darkCoal border-0"
-                        style={{ color: "rgb(107,114,128)", fontSize: "18px" }}
-                    >
-                        <LeftOutlined
-                            className="bg-lightDarkCoal p-2 rounded-full text-white"
-                            style={{ marginLeft: "-0.5rem" }}
-                        ></LeftOutlined>
-                    </Button>
-                    <Button
-                        shape="circle"
-                        ghost={true}
-                        className="bg-darkCoal border-0"
-                        style={{ color: "rgb(107,114,128)", fontSize: "18px" }}
-                    >
-                        <RightOutlined
-                            className="bg-lightDarkCoal p-2 rounded-full text-white"
-                            style={{ marginLeft: "-0.5rem" }}
-                        ></RightOutlined>
-                    </Button>
+                    <ConfigProvider theme={{
+                        token: {
+                            colorBgBase: '#1a1a1a'
+                        }
+                    }}>
+                        <Popover placement="bottom" content={(<div className="text-white font-light text-md bg-lightDarkCoal">Go back</div>)}>
+                            <Button
+                                shape="circle"
+                                ghost={true}
+                                className="bg-darkCoal border-0"
+                                style={{ color: "rgb(107,114,128)", fontSize: "18px" }}
+                                onClick={() => router.back()}
+                            >
+                                <LeftOutlined
+                                    className="bg-lightDarkCoal p-2 rounded-full text-white"
+                                    style={{ marginLeft: "-0.5rem" }}
+                                ></LeftOutlined>
+                            </Button>
+                        </Popover>
+                        <Popover placement="bottom" content={(<div className="text-white font-light text-md bg-lightDarkCoal">Go forward</div>)}>
+                            <Button
+                                shape="circle"
+                                ghost={true}
+                                className="bg-darkCoal border-0"
+                                style={{ color: "rgb(107,114,128)", fontSize: "18px" }}
+                                onClick={() => router.forward()}
+                            >
+                                <RightOutlined
+                                    className="bg-lightDarkCoal p-2 rounded-full text-white"
+                                    style={{ marginLeft: "-0.5rem" }}
+                                ></RightOutlined>
+                            </Button>
+                        </Popover>
+                    </ConfigProvider>
                     {path == '/search' ?
                         <ConfigProvider theme={{
                             token: {
@@ -110,7 +103,7 @@ export default function Header() {
                             }
                         }
                     }}>
-                        <Dropdown placement="bottom" menu={{ items: notificationItems }}>
+                        <Popover placement="bottom" content={(<span className="text-white font-light text-md bg-lightDarkCoal">{"What's new"}</span>)}>
                             <Button
                                 shape="circle"
                                 ghost={true}
@@ -122,8 +115,8 @@ export default function Header() {
                                     style={{ fontSize: '18px' }}
                                 ></BellOutlined>
                             </Button>
-                        </Dropdown>
-                        <Dropdown placement="bottom" menu={{ items: userItems }}>
+                        </Popover>
+                        <Popover placement="bottom" content={(<span className="text-white font-light text-md bg-lightDarkCoal">Username</span>)}>
                             <Button
                                 shape="circle"
                                 ghost={true}
@@ -135,7 +128,7 @@ export default function Header() {
                                     style={{ fontSize: '18px' }}
                                 ></UserOutlined>
                             </Button>
-                        </Dropdown>
+                        </Popover>
                     </ConfigProvider>
 
                 </div>
