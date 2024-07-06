@@ -8,12 +8,22 @@ import { Button, ConfigProvider, Dropdown, Input, Menu } from "antd";
 export default function Header() {
     const path = usePathname()
 
-    const items = [
+    const notificationItems = [
         {
             key: '1',
             label: (
                 <span className="text-white font-light text-sm bg-lightDarkCoal">
                     {"What's new"}
+                </span>
+            ),
+        },
+    ];
+    const userItems = [
+        {
+            key: '1',
+            label: (
+                <span className="text-white font-light text-sm bg-lightDarkCoal">
+                    {"Username"}
                 </span>
             ),
         },
@@ -100,7 +110,7 @@ export default function Header() {
                             }
                         }
                     }}>
-                        <Dropdown placement="bottom" menu={{ items }}>
+                        <Dropdown placement="bottom" menu={{ items: notificationItems }}>
                             <Button
                                 shape="circle"
                                 ghost={true}
@@ -113,7 +123,7 @@ export default function Header() {
                                 ></BellOutlined>
                             </Button>
                         </Dropdown>
-                        <Dropdown placement="bottom" menu={{ items }}>
+                        <Dropdown placement="bottom" menu={{ items: userItems }}>
                             <Button
                                 shape="circle"
                                 ghost={true}
