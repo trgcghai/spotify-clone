@@ -116,6 +116,7 @@ export default function PlayMusicBar() {
                         <FontAwesomeIcon
                             onClick={() => {
                                 setIconActive({ ...iconActive, lyrics: !iconActive.lyrics })
+                                iconActive.lyrics ? router.back() : router.push('/lyrics')
                             }}
                             style={{ color: iconActive.lyrics ? 'rgb(34,197,94)' : 'rgb(107,114,128)' }}
                             height={18}

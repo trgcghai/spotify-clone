@@ -2,12 +2,16 @@ import { faFacebook, faInstagram, faTwitter } from "@fortawesome/free-brands-svg
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Divider } from "antd";
 import Link from "next/link";
+import { useContext } from "react";
+import { VisibleContext } from "../_context/Context";
 
 export default function Footer() {
+    const { visible } = useContext(VisibleContext)
+    const { devices, nowPlaying, queue } = visible
     return (
         <div className="mt-24 mb-48">
             <div className="flex items-start justify-between">
-                <div className="flex item-start gap-32">
+                <div className={`${(devices | nowPlaying | queue) ? 'w-3/4' : 'w-3/5'} flex item-start justify-between`}>
                     <ul>
                         <li className="text-md my-2 font-bold capitalize text-white">Company</li>
                         <li className="text-md my-2 capitalize text-gray-500 cursor-pointer hover:text-gray-300 hover:underline">About</li>

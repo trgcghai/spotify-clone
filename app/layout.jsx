@@ -6,6 +6,7 @@ import PlayMusicBar from "./_components/PlayMusicBar";
 import VisibleContextProvider from "./_context/VisibleContextProvider";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
+import LayoutProvider from "./_layout/LayoutProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({ children }) {
         <VisibleContextProvider>
           <div className={`${style.layout} gap-2`}>
             <SideNav></SideNav>
-            {children}
+            <LayoutProvider>
+              {children}
+            </LayoutProvider>
           </div>
           <div className="fixed z-10 bg-black bottom-0 right-0 left-0 p-2">
             <PlayMusicBar></PlayMusicBar>
